@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="440" viewBox="0 0 1040 440" role="img" aria-labelledby="title desc">
+  <title id="title">Twenty-case edge benchmark outcomes</title>
+  <desc id="desc">All twenty final outputs were accepted. Eighteen passed on the first model attempt, one after repair, and one used deterministic fallback. Model-backed acceptance by category was four, four, four, three and four out of four.</desc>
+  <rect width="1040" height="440" fill="#fffdf8"/>
+  <text x="40" y="42" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#30343b">20-case edge benchmark</text>
+  <text x="40" y="69" font-family="Arial, sans-serif" font-size="14" fill="#59606b">All final outputs: 100% cue/text coverage and support-need preservation</text>
+  <line x1="520" y1="90" x2="520" y2="397" stroke="#d8d4ca"/>
+  <text x="40" y="104" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#30343b">Accepted final method</text>
+  <rect x="40" y="132" width="400" height="52" rx="8" fill="#e9e5dc"/>
+  <rect x="40" y="132" width="360" height="52" rx="8" fill="#5a9b73"/>
+  <rect x="400" y="132" width="20" height="52" fill="#e0ad4f"/>
+  <rect x="420" y="132" width="20" height="52" rx="8" fill="#c87964"/>
+  <circle cx="55" cy="224" r="7" fill="#5a9b73"/><text x="70" y="229" font-family="Arial, sans-serif" font-size="14" fill="#30343b">First-pass model: 18/20</text>
+  <circle cx="55" cy="257" r="7" fill="#e0ad4f"/><text x="70" y="262" font-family="Arial, sans-serif" font-size="14" fill="#30343b">Accepted after repair: 1/20</text>
+  <circle cx="55" cy="290" r="7" fill="#c87964"/><text x="70" y="295" font-family="Arial, sans-serif" font-size="14" fill="#30343b">Validated fallback: 1/20</text>
+  <text x="555" y="104" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#30343b">Model-backed accepted outputs by category</text>
+
+  <text x="555" y="131" font-family="Arial, sans-serif" font-size="13" fill="#30343b">Normal</text>
+  <rect x="680" y="112" width="240" height="26" rx="5" fill="#e9e5dc"/>
+  <rect x="680" y="112" width="240" height="26" rx="5" fill="#6a8fb3"/>
+  <text x="932" y="131" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#30343b">4/4</text>
+  <text x="555" y="186" font-family="Arial, sans-serif" font-size="13" fill="#30343b">Minimal</text>
+  <rect x="680" y="167" width="240" height="26" rx="5" fill="#e9e5dc"/>
+  <rect x="680" y="167" width="240" height="26" rx="5" fill="#6a8fb3"/>
+  <text x="932" y="186" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#30343b">4/4</text>
+  <text x="555" y="241" font-family="Arial, sans-serif" font-size="13" fill="#30343b">Multi-concern</text>
+  <rect x="680" y="222" width="240" height="26" rx="5" fill="#e9e5dc"/>
+  <rect x="680" y="222" width="240" height="26" rx="5" fill="#6a8fb3"/>
+  <text x="932" y="241" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#30343b">4/4</text>
+  <text x="555" y="296" font-family="Arial, sans-serif" font-size="13" fill="#30343b">Contradictory</text>
+  <rect x="680" y="277" width="240" height="26" rx="5" fill="#e9e5dc"/>
+  <rect x="680" y="277" width="180" height="26" rx="5" fill="#6a8fb3"/>
+  <text x="932" y="296" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#30343b">3/4</text>
+  <text x="555" y="351" font-family="Arial, sans-serif" font-size="13" fill="#30343b">Sensitive</text>
+  <rect x="680" y="332" width="240" height="26" rx="5" fill="#e9e5dc"/>
+  <rect x="680" y="332" width="240" height="26" rx="5" fill="#6a8fb3"/>
+  <text x="932" y="351" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#30343b">4/4</text>
+  <text x="40" y="400" font-family="Arial, sans-serif" font-size="12" fill="#707782">Synthetic inputs; gpt-5.4-mini; accepted pipeline output may include deterministic fallback.</text>
+  <text x="40" y="421" font-family="Arial, sans-serif" font-size="11" fill="#707782">Provenance: reconstructed from preserved artefacts; aggregate method and latency values transcribed from the submitted report.</text>
+</svg>

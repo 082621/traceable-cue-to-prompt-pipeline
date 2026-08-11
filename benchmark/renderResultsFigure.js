@@ -18,8 +18,7 @@ const latencyRows = [
 
 const percentBar = (label, value, y, color) => {
   const width = value * 410;
-  return `
-    <text x="90" y="${y + 20}" class="label">${label}</text>
+  return `  <text x="90" y="${y + 20}" class="label">${label}</text>
     <rect x="250" y="${y}" width="410" height="28" rx="5" fill="#edf1f5"/>
     <rect x="250" y="${y}" width="${width.toFixed(2)}" height="28" rx="5" fill="${color}"/>
     <text x="675" y="${y + 20}" class="value">${(value * 100).toFixed(2)}%</text>`;
@@ -27,8 +26,7 @@ const percentBar = (label, value, y, color) => {
 
 const latencyBar = (label, value, y, color) => {
   const width = (value / 4500) * 360;
-  return `
-    <text x="760" y="${y + 20}" class="label">${label}</text>
+  return `  <text x="760" y="${y + 20}" class="label">${label}</text>
     <rect x="880" y="${y}" width="360" height="28" rx="5" fill="#edf1f5"/>
     <rect x="880" y="${y}" width="${width.toFixed(2)}" height="28" rx="5" fill="${color}"/>
     <text x="1250" y="${y + 20}" class="value">${value.toFixed(2)} ms</text>`;

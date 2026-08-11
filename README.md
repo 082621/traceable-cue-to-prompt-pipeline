@@ -1,102 +1,105 @@
-# Cue-to-Prompt
+# Traceable Cue-to-Prompt Pipeline
 
-A high-fidelity research prototype developed for the BSc dissertation
-**"Design and Evaluation of a Structured Cue-to-Prompt Interface for
-Reducing Perceived Explanation Burden During First-Message Preparation
-in a Hypothetical Emotional-Support Scenario"**
-(University of Leeds, COMP3931, 2025/26).
+This repository extends the original University of Leeds COMP3931 Cue-to-Prompt interaction prototype into an identifiable, testable software system. The six-screen interface is retained, but the final text is now produced through a bounded fault-tolerant pipeline:
 
-## Overview
+```text
+UI selections → schema validation → cue planner → structured model output
+              → coverage/safety validator → one repair attempt → deterministic fallback
+```
 
-This prototype supports a within-subject A/B evaluation (N = 23)
-comparing a blank text-input baseline (Condition A) against a
-structured six-screen Cue-to-Prompt interface (Condition B). The
-interface scaffolds emotional expression through concern selection,
-cue-based information collection, and template-driven prompt synthesis.
+The original deterministic generator is still present as both the study baseline and the guaranteed fallback. This separation allows the original HCI result to remain interpretable while adding technical research questions about traceability, output correctness, failure recovery, latency, and model availability.
 
-The prototype is deliberately minimal and self-contained:
+This is a research prototype, not a clinical or crisis-support system.
 
-- **No backend.** Runs entirely in the browser.
-- **No LLM integration.** Isolates the effect of interaction design
-  from downstream model variance.
-- **No persistence.** No participant input is stored or transmitted.
-- **Deterministic output.** Identical selections produce byte-identical
-  prompts.
+## What is technically new
 
-See Figure 3 (§5.3) and Appendix E of the dissertation for the
-rationale behind these methodological commitments.
+- A versioned Zod input contract rejects malformed or catalogue-tampered selections before an API call.
+- A planner converts selections and participant-authored text into stable cue IDs and an immutable prompt plan.
+- The server uses the OpenAI Responses API with Structured Outputs; the API key never enters the browser bundle.
+- The model must return its cue/support/style trace alongside the draft.
+- An independent validator checks exact ID coverage, exact source-text preservation, support/style constraints, optional-text preservation, and limited fabrication flags.
+- One bounded repair attempt receives the validation report. Persistent invalid output or provider failure activates a separately validated deterministic fallback.
+- Logs contain request IDs, method, fallback class, and latency—not emotional-support text.
+- Unit, orchestration, and HTTP tests run without network access or API cost.
+- Offline fault injection and the main ablation write metric-only results; the separate edge study retains synthetic messages for blinded rating.
 
-## Tech stack
+The implementation follows OpenAI's official [Structured Outputs guide](https://developers.openai.com/api/docs/guides/structured-outputs) and defaults to the current lower-latency `gpt-5.4-mini` alias. Pin a dated snapshot with `OPENAI_MODEL` when model-version reproducibility matters and the API organization has access.
 
-- React 19.2 with Hooks
-- Vite 8.0 (dev server + bundler)
-- Tailwind CSS utility classes (loaded at runtime via
-  `@tailwindcss/browser` CDN; see Appendix E.1)
-- `lucide-react` icon set
+## Quick start
 
-## Getting started
+Requirements: Node.js 20 or later.
 
 ```bash
-npm install
-npm run dev        # development server (localhost:5173)
-npm run build      # production build (outputs to dist/)
-npm run preview    # preview the built output
-npm run lint       # ESLint check
+npm ci
+cp .env.example .env.local
+# Add OPENAI_API_KEY to .env.local if live generation is required.
+npm run dev
 ```
+
+Open `http://localhost:5173`. The Vite server proxies `/api` to the local API on `http://localhost:8787`.
+
+If no key, credit, model permission, or network is available, the interface still returns the validated deterministic draft. `.env.local` is git-ignored and must never be submitted or committed.
+
+## Verification commands
+
+```bash
+npm run lint             # static checks
+npm test                 # offline unit/integration/API tests
+npm run test:coverage    # coverage report
+npm run build            # production client build
+npm run benchmark        # synthetic offline fault injection
+npm run benchmark:live   # optional; uses API credits, never persists message text
+npm run benchmark:ablation # 30 cases × 3 paired live repeats with checkpointing
+npm run benchmark:edge   # optional live 20-case edge run; persists synthetic messages
+npm run benchmark:edge:reconstruct # validate preserved edge/rating evidence
+```
+
+The offline suite contains 31 tests across nine files and a 30-case injected-fault benchmark. The main paired ablation contains 90 runs: raw Structured Outputs passed 80/90, while validation plus bounded repair/fallback returned 90/90 accepted outputs. Exact cue-text coverage rose from 98.67% to 100%; eight failures were repaired and two used deterministic fallback.
+
+The supplementary edge evidence was reconstructed from preserved synthetic messages, recovered requests, a locked condition key, and aggregate values in the submitted report because the original per-case machine telemetry was absent. Across 20 cases, the record contains 18 first-pass model outputs, one repaired output, and one validated fallback; both the baseline and final pipeline preserved all cues and support needs in 20/20 cases. Two blinded Chinese-reading raters each preferred the pipeline in 19/20 comparisons and selected no preference for the identical fallback pair. See [`docs/RESULTS.md`](docs/RESULTS.md), [`docs/ABLATION-STUDY.md`](docs/ABLATION-STUDY.md), and `benchmark/results/`.
 
 ## Repository structure
 
+```text
+traceable-cue-to-prompt-pipeline/
+├── src/
+│   ├── App.jsx                     retained React interaction flow
+│   └── services/promptApi.js       browser-to-server boundary
+├── shared/
+│   ├── catalogue.js               single source of cue definitions
+│   ├── contracts.js               versioned input/output schemas
+│   ├── promptPlanner.js            stable ID and prompt-plan construction
+│   ├── outputValidator.js          independent correctness checks
+│   └── deterministicGenerator.js   study baseline and safe fallback
+├── server/
+│   ├── openaiGenerator.js          Structured Outputs adapter
+│   ├── orchestrator.js             retry/repair/fallback state machine
+│   ├── app.js                      testable Express API
+│   └── index.js                    environment and process entry point
+├── tests/                          offline automated tests
+├── benchmark/                      synthetic cases and runners
+└── docs/                           architecture and evaluation guidance
 ```
-cue-to-prompt/
-├── index.html               HTML entry point
-├── vite.config.js           Vite configuration
-├── eslint.config.js         ESLint rules
-├── package.json             Dependencies and scripts
-├── public/
-│   ├── favicon.svg
-│   └── icons.svg
-└── src/
-    ├── main.jsx             React root mount
-    ├── App.jsx              Main component (see Appendix E of thesis)
-    ├── App.css              Component-specific styles
-    ├── index.css            Global base styles
-    └── assets/
-        └── hero.png
-```
 
-## The cue corpus
+## API contract
 
-The five concern categories (academic pressure, future uncertainty,
-family expectations, social relationships/loneliness, cultural
-adaptation) and their associated cue sets were derived from prior
-literature on stressors among Chinese international students in
-English-speaking contexts. The complete corpus is encoded as a static
-JavaScript constant (`CONCERNS_CONFIG` in `src/App.jsx`, lines 17–53).
-It is not loaded from an external source, guaranteeing reproducibility
-across participants.
+`POST /api/v1/prompts/generate` accepts three selected concerns, their situation/emotion/impact cues, one or two support needs, one response style, and optional text. The response contains:
 
-## Interaction flow
+- `message`: the accepted model draft or deterministic fallback;
+- `trace`: cue, support, and style IDs claimed by the generator;
+- `validation`: exact coverage and invariant results;
+- `metadata`: request ID, plan digest, generation method, attempt count, fallback reason, model, and latency.
 
-The interface walks participants through six screen types. The
-cue-collection stage is repeated once for each of the three selected
-concerns. Full screen-by-screen descriptions are in Appendix D of the
-dissertation.
+`GET /api/health` reports configuration state and model name, but never returns credentials.
 
-| Step | Screen type                           | State updated                      |
-|------|---------------------------------------|------------------------------------|
-| 1    | Scenario entry                        | —                                  |
-| 2    | Concern selection (3 of 5)            | `selectedConcerns`                 |
-| 3    | Cue collection (repeated × 3)         | `concernData[concernId]`           |
-| 4    | Support need                          | `supportNeeds`, `responseStyle`    |
-| 5    | Optional free text                    | `optionalText`                     |
-| 6    | Structured summary + generated prompt | —                                  |
+## Privacy and limitations
 
-## License and access
+Input is held in memory for request processing and is not written by this code. Live mode sends the prompt plan to the configured OpenAI API, so a study protocol must disclose third-party processing and use approved data-handling settings. Benchmark cases are synthetic. The small safety-pattern layer is an experimental fabrication guard, not a comprehensive safety classifier.
 
-This repository is made available for academic marking and
-reproducibility purposes. It is not intended for clinical deployment.
+For thesis claims, distinguish clearly between: (1) the original N=23 interface study, (2) offline component/fault-injection evidence, (3) the 30-case/90-run synthetic ablation, and (4) the 20-case/two-rater supplementary comparison. These support bounded claims for the evaluated artefacts and synthetic cases, not general model reliability, population language preference, clinical safety, or effectiveness with participants.
 
-## Author
+## Academic context
 
-Rui Gu · BSc Computer Science with Artificial Intelligence ·
-University of Leeds · 2025/26
+This repository accompanies *Design and Evaluation of a Fault-Tolerant and Traceable Cue-to-Prompt Generation Pipeline* (University of Leeds, COMP3931, 2025/26). The earlier N=23 interface study used the deterministic browser prototype; it did not expose participants to the revised live LLM pipeline.
+
+This clean reproducibility repository was assembled on 12 August 2026 from the original prototype and the evaluated v2 artefact. Its commits group implementation components into auditable stages; they do not claim to reproduce the original chronological development history.

@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">Cue-to-Prompt ablation results</title>
+  <desc id="desc">Acceptance and cue-text coverage for three conditions, plus model-only and full-pipeline latency.</desc>
+  <style>
+    .title { font: 700 30px Inter, Arial, sans-serif; fill: #263238; }
+    .subtitle { font: 400 16px Inter, Arial, sans-serif; fill: #607080; }
+    .panel { font: 700 20px Inter, Arial, sans-serif; fill: #263238; }
+    .label { font: 500 15px Inter, Arial, sans-serif; fill: #35424d; }
+    .value { font: 600 14px Inter, Arial, sans-serif; fill: #263238; }
+    .legend { font: 500 14px Inter, Arial, sans-serif; fill: #4f5d68; }
+    .note { font: 400 14px Inter, Arial, sans-serif; fill: #687783; }
+  </style>
+  <rect width="1400" height="760" fill="#ffffff"/>
+  <text x="70" y="60" class="title">Cue-to-Prompt: correctness gained, bounded latency cost</text>
+  <text x="70" y="90" class="subtitle">30 synthetic cases × 3 repeats; paired first model candidates; n = 90 runs</text>
+
+  <rect x="55" y="125" width="650" height="520" rx="16" fill="#fafbfc" stroke="#dfe5ea"/>
+  <text x="85" y="165" class="panel">Acceptance and exact cue-text coverage</text>
+  <rect x="87" y="190" width="14" height="14" rx="3" fill="#4776b4"/>
+  <text x="108" y="202" class="legend">Accepted outputs</text>
+  <rect x="240" y="190" width="14" height="14" rx="3" fill="#56a675"/>
+  <text x="261" y="202" class="legend">Exact cue-text coverage</text>
+    <text x="90" y="255" class="label">Deterministic v1</text>
+    <rect x="250" y="235" width="410" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="250" y="235" width="410.00" height="28" rx="5" fill="#4776b4"/>
+    <text x="675" y="255" class="value">100.00%</text>
+    <text x="90" y="291" class="label">Deterministic v1</text>
+    <rect x="250" y="271" width="410" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="250" y="271" width="410.00" height="28" rx="5" fill="#56a675"/>
+    <text x="675" y="291" class="value">100.00%</text>
+    <text x="90" y="360" class="label">Model only</text>
+    <rect x="250" y="340" width="410" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="250" y="340" width="364.45" height="28" rx="5" fill="#4776b4"/>
+    <text x="675" y="360" class="value">88.89%</text>
+    <text x="90" y="396" class="label">Model only</text>
+    <rect x="250" y="376" width="410" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="250" y="376" width="404.55" height="28" rx="5" fill="#56a675"/>
+    <text x="675" y="396" class="value">98.67%</text>
+    <text x="90" y="465" class="label">Full pipeline</text>
+    <rect x="250" y="445" width="410" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="250" y="445" width="410.00" height="28" rx="5" fill="#4776b4"/>
+    <text x="675" y="465" class="value">100.00%</text>
+    <text x="90" y="501" class="label">Full pipeline</text>
+    <rect x="250" y="481" width="410" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="250" y="481" width="410.00" height="28" rx="5" fill="#56a675"/>
+    <text x="675" y="501" class="value">100.00%</text>
+  <text x="85" y="570" class="note">Model only: 80/90 accepted. Full pipeline: 80 first pass,</text>
+  <text x="85" y="594" class="note">8 repaired, 2 deterministic fallbacks; all 90 accepted.</text>
+
+  <rect x="730" y="125" width="620" height="520" rx="16" fill="#fafbfc" stroke="#dfe5ea"/>
+  <text x="760" y="165" class="panel">Wall-clock latency</text>
+  <rect x="762" y="190" width="14" height="14" rx="3" fill="#d68b42"/>
+  <text x="783" y="202" class="legend">p50</text>
+  <rect x="842" y="190" width="14" height="14" rx="3" fill="#a95c68"/>
+  <text x="863" y="202" class="legend">p95</text>
+    <text x="760" y="270" class="label">Model only</text>
+    <rect x="880" y="250" width="360" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="880" y="250" width="147.52" height="28" rx="5" fill="#d68b42"/>
+    <text x="1250" y="270" class="value">1844.05 ms</text>
+    <text x="760" y="306" class="label">Model only</text>
+    <rect x="880" y="286" width="360" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="880" y="286" width="284.17" height="28" rx="5" fill="#a95c68"/>
+    <text x="1250" y="306" class="value">3552.17 ms</text>
+    <text x="760" y="400" class="label">Full pipeline</text>
+    <rect x="880" y="380" width="360" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="880" y="380" width="148.04" height="28" rx="5" fill="#d68b42"/>
+    <text x="1250" y="400" class="value">1850.47 ms</text>
+    <text x="760" y="436" class="label">Full pipeline</text>
+    <rect x="880" y="416" width="360" height="28" rx="5" fill="#edf1f5"/>
+    <rect x="880" y="416" width="329.20" height="28" rx="5" fill="#a95c68"/>
+    <text x="1250" y="436" class="value">4115.01 ms</text>
+  <text x="760" y="510" class="note">Median overhead: 6.42 ms</text>
+  <text x="760" y="534" class="note">p95 overhead: 562.85 ms</text>
+  <text x="760" y="558" class="note">Deterministic v1 p50: 0.032 ms (not plotted to scale)</text>
+
+  <text x="70" y="700" class="note">Source: benchmark/results/ablation-live-latest.json · Generated text was not persisted · Descriptive synthetic evaluation</text>
+</svg>
