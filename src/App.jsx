@@ -12,64 +12,30 @@ import {
   Heart,
   Sparkles,
 } from 'lucide-react';
+import {
+  CONCERN_DEFINITIONS,
+  EMOTIONS,
+  IMPACTS,
+  SUPPORT_NEEDS,
+  RESPONSE_STYLES,
+} from '../shared/catalogue.js';
+import { createGenerationRequest, buildPromptPlan } from '../shared/promptPlanner.js';
+import { generateDeterministicPrompt } from '../shared/deterministicGenerator.js';
+import { requestGeneratedPrompt } from './services/promptApi.js';
 
 // --- 数据配置 ---
-const CONCERNS_CONFIG = [
-  {
-    id: 'academic',
-    title: '学业压力',
-    desc: '截止日期、成绩、进度、专注困难',
-    icon: <BookOpen className="w-5 h-5" />,
-    cues: ['截止日期都堆在一起', '感觉自己进度落后', '学业任务太多', '考试 / 成绩压力大', '很难专心', '担心自己表现不够好'],
-  },
-  {
-    id: 'future',
-    title: '未来规划不确定',
-    desc: '毕业去向、求职、方向选择',
-    icon: <Compass className="w-5 h-5" />,
-    cues: ['不知道毕业后要做什么', '害怕自己选错方向', '对找工作很焦虑', '没有明确方向', '总在和别人比较', '对下一步感到卡住了'],
-  },
-  {
-    id: 'family',
-    title: '家庭期待',
-    desc: '家人压力、解释困难、害怕辜负',
-    icon: <Home className="w-5 h-5" />,
-    cues: ['担心让家人失望', '很难和家里解释我现在的情况', '感到来自家庭的压力', '对未来选择有很强的家庭期待', '会因为达不到期待而内疚', '家人的期待压得我有点喘'],
-  },
-  {
-    id: 'social',
-    title: '人际关系 / 孤独感',
-    desc: '孤独、关系摩擦、缺乏支持',
-    icon: <Users className="w-5 h-5" />,
-    cues: ['感觉自己很孤单', '很难建立真正亲近的关系', '感觉没有人真正理解我', '和朋友 / 室友之间有摩擦', '很想要情感支持', '即使身边有人，也还是觉得孤单'],
-  },
-  {
-    id: 'culture',
-    title: '文化适应压力',
-    desc: '语言、归属感、持续适应的疲惫',
-    icon: <Sparkles className="w-5 h-5" />,
-    cues: ['语言沟通有压力', '总觉得自己不完全属于这里', '一直在适应新的环境，感觉很累', '不同的社交规则让我有压力', '感觉夹在两种文化之间', '在这个环境里很难自然表达自己'],
-  },
-];
+const CONCERN_ICONS = {
+  academic: <BookOpen className="w-5 h-5" />,
+  future: <Compass className="w-5 h-5" />,
+  family: <Home className="w-5 h-5" />,
+  social: <Users className="w-5 h-5" />,
+  culture: <Sparkles className="w-5 h-5" />,
+};
 
-const EMOTIONS = ['焦虑', '压力大', '孤独', '迷茫', '内疚', '烦躁', '很累', '卡住了', '委屈', '情绪很绷'];
-
-const IMPACTS = [
-  '很难专心',
-  '总在反复想这件事',
-  '很难做决定',
-  '情绪一直绷着',
-  '影响了日常生活',
-  '我不知道从哪里开始',
-  '让我更难和别人沟通',
-  '让我一直觉得很累',
-  '很难真正放松下来',
-  '我有点不想面对它',
-];
-
-const SUPPORT_NEEDS = ['情绪安慰', '实际建议', '帮我整理思路', '鼓励和支持', '帮我理清下一步怎么做', '只是想被认真听一听'];
-
-const RESPONSE_STYLES = ['温柔一点', '更具体一点', '一步一步地帮我分析', '简洁直接', '更像陪我理清思路', '不要太空泛'];
+const CONCERNS_CONFIG = CONCERN_DEFINITIONS.map((concern) => ({
+  ...concern,
+  icon: CONCERN_ICONS[concern.id],
+}));
 
 // --- 颜色系统 ---
 const COLORS = {
@@ -153,13 +119,13 @@ export default function App() {
   const [responseStyle, setResponseStyle] = useState('');
   const [optionalText, setOptionalText] = useState('');
   const [showCopyFeedback, setShowCopyFeedback] = useState(false);
+  const [generation, setGeneration] = useState({ status: 'idle', result: null, error: null });
 
   const concernStepIndex = step >= 2 && step <= 4 ? step - 2 : null;
   const currentConcern =
     concernStepIndex !== null
       ? CONCERNS_CONFIG.find((c) => c.id === selectedConcerns[concernStepIndex])
       : null;
-
 
   const handleNext = () => setStep((s) => s + 1);
   const handleBack = () => setStep((s) => s - 1);
@@ -203,63 +169,39 @@ export default function App() {
     return hasCue && hasEmotion && hasImpact;
   };
 
-  const generatePrompt = () => {
+  const createCurrentRequest = () => createGenerationRequest({
+    selectedConcerns,
+    concernData,
+    supportNeeds,
+    responseStyle,
+    optionalText,
+  });
+
+  const generateBaselinePrompt = () => {
     if (!selectedConcerns.length) return '';
+    return generateDeterministicPrompt(buildPromptPlan(createCurrentRequest())).message;
+  };
 
-    const allEmotions = Array.from(
-      new Set(
-        selectedConcerns.flatMap((id) => {
-          const data = concernData[id] || {};
-          return [
-            ...(data.emotions || []),
-            ...(data.customEmotion?.trim() ? [data.customEmotion.trim()] : []),
-          ];
-        })
-      )
-    ).join('、');
+  const currentPrompt = () => generation.result?.message || generateBaselinePrompt();
 
-    let prompt = `我最近同时被几件事情困扰，整体上感到 ${allEmotions}。\n`;
-    prompt += `目前最影响我的三件事是：${selectedConcerns
-      .map((id) => CONCERNS_CONFIG.find((c) => c.id === id).title)
-      .join('、')}。\n\n`;
-
-    selectedConcerns.forEach((id, index) => {
-      const config = CONCERNS_CONFIG.find((c) => c.id === id);
-      const data = concernData[id];
-      const ordinal = ['第一', '第二', '第三'][index];
-
-      const cueList = [
-        ...(data.cues || []),
-        ...(data.customCue?.trim() ? [data.customCue.trim()] : []),
-      ];
-
-      const emotionList = [
-        ...(data.emotions || []),
-        ...(data.customEmotion?.trim() ? [data.customEmotion.trim()] : []),
-      ];
-
-      const impactList = [
-        ...(data.impacts || []),
-        ...(data.customImpact?.trim() ? [data.customImpact.trim()] : []),
-      ];
-
-      prompt += `${ordinal}，关于「${config.title}」，现在的情况是 ${cueList.join('，')}，这让我感到 ${emotionList.join('、')}，也让我 ${impactList.join('、')}。\n`;
-    });
-
-    prompt += `\n我现在最需要的是 ${supportNeeds.join('和')}。\n`;
-    prompt += `希望你能用 ${responseStyle} 的方式来回应我。\n`;
-
-    if (optionalText.trim()) {
-      prompt += `\n如果有必要，我还想补充：${optionalText}`;
-    } else {
-      prompt += `\n如果有必要，我还想补充：我并不是想立刻得到标准答案，只是想先把自己理清楚。`;
+  const handleGenerate = async () => {
+    const request = createCurrentRequest();
+    setStep(7);
+    setGeneration({ status: 'loading', result: null, error: null });
+    try {
+      const result = await requestGeneratedPrompt(request);
+      setGeneration({ status: 'ready', result, error: null });
+    } catch (error) {
+      setGeneration({
+        status: 'fallback',
+        result: null,
+        error: error instanceof Error ? error.message : '生成服务暂时不可用',
+      });
     }
-
-    return prompt;
   };
 
   const copyToClipboard = () => {
-    const text = generatePrompt();
+    const text = currentPrompt();
     const textArea = document.createElement('textarea');
     textArea.value = text;
     document.body.appendChild(textArea);
@@ -795,7 +737,7 @@ export default function App() {
         </button>
 
         <button
-          onClick={handleNext}
+          onClick={handleGenerate}
           className="px-8 py-3 rounded-full font-medium transition-all"
           style={{
             backgroundColor: COLORS.primary,
@@ -811,7 +753,7 @@ export default function App() {
 
   // Screen 7: Result Page
   const renderResult = () => {
-    const prompt = generatePrompt();
+    const prompt = currentPrompt();
 
     const overallEmotions = Array.from(
       new Set(
@@ -834,6 +776,27 @@ export default function App() {
           <p style={{ color: COLORS.textSecondary }}>
             系统已经根据你的选择，梳理出了这段表达。你可以直接复制给 AI。
           </p>
+          <div className="mt-3 flex flex-wrap items-center gap-2 text-xs" style={{ color: COLORS.textSecondary }}>
+            {generation.status === 'loading' && (
+              <span className="px-3 py-1 rounded-full border" style={{ backgroundColor: COLORS.cardDefault, borderColor: COLORS.border }}>
+                正在生成并检查；当前显示可用的确定性草稿
+              </span>
+            )}
+            {generation.status === 'ready' && (
+              <span className="px-3 py-1 rounded-full border" style={{ backgroundColor: COLORS.helper, borderColor: COLORS.selectedBorder }}>
+                {generation.result.metadata.usedFallback
+                  ? generation.result.metadata.fallbackReason === 'provider-unavailable'
+                    ? '在线模型不可用，已安全回退'
+                    : '模型输出未通过检查，已安全回退'
+                  : `完整性检查通过 · ${generation.result.metadata.method === 'model-repair' ? '自动修复 1 次' : '首次通过'}`}
+              </span>
+            )}
+            {generation.status === 'fallback' && (
+              <span className="px-3 py-1 rounded-full border" style={{ backgroundColor: COLORS.bgWarm, borderColor: COLORS.border }}>
+                在线服务不可用，已使用本地确定性草稿
+              </span>
+            )}
+          </div>
         </div>
 
         <div className="space-y-6">
@@ -1059,7 +1022,7 @@ export default function App() {
         {/* Footer */}
         <footer className="mt-12 text-center py-6">
           <p className="text-xs" style={{ color: COLORS.textTertiary }}>
-            Cue-to-Prompt Prototype v1.0 • 轻量情绪支持引导
+            Cue-to-Prompt v2.0 • 可验证结构化提示生成原型
           </p>
         </footer>
       </div>
