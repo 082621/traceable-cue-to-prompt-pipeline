@@ -15,6 +15,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
+    "benchmark": "node benchmark/runBenchmark.js",
     "preview": "vite preview"
   },
   "dependencies": {
