@@ -17,7 +17,7 @@ const latencyRows = [
 ];
 
 const percentBar = (label, value, y, color) => {
-  const width = value * 4.1;
+  const width = value * 410;
   return `
     <text x="90" y="${y + 20}" class="label">${label}</text>
     <rect x="250" y="${y}" width="410" height="28" rx="5" fill="#edf1f5"/>
