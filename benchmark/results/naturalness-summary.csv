@@ -1,0 +1,7 @@
+rater,metric,baseline_mean,baseline_n,pipeline_mean,pipeline_n,paired_mean_difference,pipeline_higher,tie,baseline_higher,paired_n
+1,naturalness,2,20,4.4,20,2.4,19,1,0,20
+1,coherence,4.947,19,4.55,20,-0.421,1,10,8,19
+1,concision,3,19,4.4,20,1.474,19,0,0,19
+2,naturalness,1.95,20,4.35,20,2.4,19,1,0,20
+2,coherence,2.95,20,4.2,20,1.25,19,1,0,20
+2,concision,1.95,20,3.9,20,1.95,19,1,0,20

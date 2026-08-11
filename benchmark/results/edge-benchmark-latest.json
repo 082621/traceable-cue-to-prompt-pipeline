@@ -1,0 +1,615 @@
+{
+  "metadata": {
+    "evidenceStatus": "reconstructed-from-preserved-artifacts",
+    "reconstructionToolVersion": "1.0",
+    "sourceConditionKeyGeneratedAt": "2026-08-09T00:41:13.126Z",
+    "recordedRunDate": "2026-08-09",
+    "model": "gpt-5.4-mini",
+    "schemaVersion": "2.0",
+    "syntheticDataOnly": true,
+    "generatedTextLocation": "naturalness-rating-sheet-latest.md",
+    "sources": {
+      "ratingSheet": {
+        "filename": "naturalness-rating-sheet-latest.md",
+        "sha256": "19f5676bfa8b77a4749b293423487279eca673f795c5a6a9a3cdc6248c8c595d"
+      },
+      "conditionKey": {
+        "filename": "naturalness-condition-key-latest.json",
+        "sha256": "fa5b2ea13dd115389af65654026d361ee1fdb29d2cccdd9c9ed144943b080735"
+      },
+      "dissertation": "Appendix H.4 and Appendix A.4 of the submitted Style-Polished report"
+    },
+    "validationBasis": "Baseline messages are byte-reproduced by the recovered deterministic generator. Pipeline message, exact-text, support, style, and safety invariants are rechecked against recovered requests. Pipeline trace IDs use the canonical recovered plan because the original per-case trace telemetry is unavailable.",
+    "limitation": "The original per-case machine telemetry was absent from the recovered source archive. Aggregate cue-ID, method, provider-call, and latency values are transcribed from the submitted report. The preserved blind materials identify edge-16 as fallback, but do not identify which sensitive/safety case used repair."
+  },
+  "summary": {
+    "caseCount": 20,
+    "baseline": {
+      "acceptedCount": 20,
+      "meanCueIdCoverage": 1,
+      "meanCueTextCoverage": 1,
+      "supportNeedPreservedCount": 20,
+      "meanMessageChars": 264.35
+    },
+    "pipeline": {
+      "acceptedCount": 20,
+      "firstPassCount": 18,
+      "repairedCount": 1,
+      "fallbackCount": 1,
+      "providerCalls": 22,
+      "meanCueIdCoverage": 1,
+      "meanCueTextCoverage": 1,
+      "supportNeedPreservedCount": 20,
+      "meanMessageChars": 114.45,
+      "latencyMs": {
+        "p50": 1788.69,
+        "p95": 4296.54,
+        "mean": 2284.58
+      }
+    },
+    "categoryMethods": [
+      {
+        "category": "normal",
+        "cases": 4,
+        "firstPassModel": 4,
+        "repair": 0,
+        "fallback": 0,
+        "accepted": 4
+      },
+      {
+        "category": "schema-minimal",
+        "cases": 4,
+        "firstPassModel": 4,
+        "repair": 0,
+        "fallback": 0,
+        "accepted": 4
+      },
+      {
+        "category": "multi-concern",
+        "cases": 4,
+        "firstPassModel": 4,
+        "repair": 0,
+        "fallback": 0,
+        "accepted": 4
+      },
+      {
+        "category": "contradictory",
+        "cases": 4,
+        "firstPassModel": 3,
+        "repair": 0,
+        "fallback": 1,
+        "accepted": 4
+      },
+      {
+        "category": "sensitive-safety",
+        "cases": 4,
+        "firstPassModel": 3,
+        "repair": 1,
+        "fallback": 0,
+        "accepted": 4
+      }
+    ]
+  },
+  "rows": [
+    {
+      "caseId": "edge-01",
+      "category": "normal",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 249,
+        "messageSha256": "d8ad2c94c1071e28945107ea32afa4f9420a7122bfdfe6c78d5965108944f662"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 88,
+        "messageSha256": "32721c7a9cf882506dfcd16e1f5424b1569df25d06d6d9bfb63790c823ea5670"
+      }
+    },
+    {
+      "caseId": "edge-02",
+      "category": "normal",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 268,
+        "messageSha256": "1305859c76099ac2d2c9b2d9d7e843b797cf9dd55510683227563f06c3edb958"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 105,
+        "messageSha256": "e9fc0a29a25e698f9779aef64e5f580fb04e7810ee4fbbf0e720d5651b9d306a"
+      }
+    },
+    {
+      "caseId": "edge-03",
+      "category": "normal",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 253,
+        "messageSha256": "8204bde7bc3eccf590e331540526486e061757d70a7e64e2a7753047f8d972f0"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 122,
+        "messageSha256": "6e9bdb343e1a57f09b61dae928876eea8d5f47fa3e4813de82c3f84a60bd82de"
+      }
+    },
+    {
+      "caseId": "edge-04",
+      "category": "normal",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 233,
+        "messageSha256": "fd3944f0ce6d3f740e45bb0f1f0b2dc4eb3bb7d4318276d18d62fe8070774edd"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 77,
+        "messageSha256": "99f1265b46e514c44db1d6311b7e8d5fb45304f159d1056c75ad912716261a89"
+      }
+    },
+    {
+      "caseId": "edge-05",
+      "category": "schema-minimal",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 249,
+        "messageSha256": "d8ad2c94c1071e28945107ea32afa4f9420a7122bfdfe6c78d5965108944f662"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 85,
+        "messageSha256": "9528c5ef9cf7a461a66ce5269ba1f768b2817952a1bbe7c998207996c0935e20"
+      }
+    },
+    {
+      "caseId": "edge-06",
+      "category": "schema-minimal",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 249,
+        "messageSha256": "cecb7c2507f4509ee79ec73cacc1ff2f4c37631f36a721c08d67c549af0c244f"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 84,
+        "messageSha256": "8089465498c1ed9c91917db019d49d52e8f053ffba3072c44a44bbee1ea672a6"
+      }
+    },
+    {
+      "caseId": "edge-07",
+      "category": "schema-minimal",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 252,
+        "messageSha256": "cb9545303a8310363574777101e8d4838b9ce8008d738d07dcf1fa5347393e20"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 99,
+        "messageSha256": "d495a7c7597861e175f8f5dab9f14988aa75f36373905739b285dd9271ecbd2c"
+      }
+    },
+    {
+      "caseId": "edge-08",
+      "category": "schema-minimal",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 249,
+        "messageSha256": "e6ca9848041ecb125db2fe786450e7a82e56289ec5b4f2cb4e096a66abd838ca"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 103,
+        "messageSha256": "12c9ba9465f96211357cb04914eea580453877735211718149dab78d0c0e0049"
+      }
+    },
+    {
+      "caseId": "edge-09",
+      "category": "multi-concern",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 268,
+        "messageSha256": "bdba5c87c818c6294249fd2ad8b9486e0d9b71207ca287931c7bfcbca87e6f34"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 108,
+        "messageSha256": "4af9d2a13408642aba32d2e10ff1e2e4613d139c3a37b83db5178a414e084e80"
+      }
+    },
+    {
+      "caseId": "edge-10",
+      "category": "multi-concern",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 283,
+        "messageSha256": "0d166b6f8393a428903430005719e334c9e126909691f3c96c4e088c5f0b4440"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 121,
+        "messageSha256": "3f9fa0367dfbbb73156ac6e38c2e8b9ad5801a0bd4c204adb4ef4bafa81ce6fa"
+      }
+    },
+    {
+      "caseId": "edge-11",
+      "category": "multi-concern",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 281,
+        "messageSha256": "24097145cf52b6f2713460277fa4250145171a77bc9328c547cf408e6f2dbff3"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 109,
+        "messageSha256": "fbbfd80eac24e810a4170d456de0b193bf79e3405633dd888811078654626333"
+      }
+    },
+    {
+      "caseId": "edge-12",
+      "category": "multi-concern",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 256,
+        "messageSha256": "1833b9235dc56e0a46743061441201872782ee4f303a355b1cdc413977a6608e"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 98,
+        "messageSha256": "27f1959a18844b6d4eeefb1be96a7fa36221cf02b84d9f7b5f3240ff6c7c22a3"
+      }
+    },
+    {
+      "caseId": "edge-13",
+      "category": "contradictory",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 268,
+        "messageSha256": "1e930bebf7ddc62756afd4e6f243753a44d822016784837b37e84200db7cfb9d"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 108,
+        "messageSha256": "0a5b7be3091fddcb818fb3a539e4b6513bee4f6f840c8b70a8170ddcf2abb7b5"
+      }
+    },
+    {
+      "caseId": "edge-14",
+      "category": "contradictory",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 282,
+        "messageSha256": "7f9be4f9eb8956e536d1dba1c8cb13a532ce3ae7d95d961a01ef394901e9dd6d"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 112,
+        "messageSha256": "7d1a563af1e3e4664b9e09d66d5d77cf44fe1d510c39af8d23a1231ee04dce3d"
+      }
+    },
+    {
+      "caseId": "edge-15",
+      "category": "contradictory",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 306,
+        "messageSha256": "8082d03b7072ad10449dd2b936a880d60d5d66b2afbb9cf6e5d09ec504fc6477"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 135,
+        "messageSha256": "9c0ec928999f17b6fd2c0c66fc05dc5276ad5c8c8b0960b04799336a34121e68"
+      }
+    },
+    {
+      "caseId": "edge-16",
+      "category": "contradictory",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "deterministic-fallback",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 270,
+        "messageSha256": "a3bc3aa74988ef8e1912c3f4bc94d39053fb96ca725c128ab419ca8a89404cd0"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 270,
+        "messageSha256": "a3bc3aa74988ef8e1912c3f4bc94d39053fb96ca725c128ab419ca8a89404cd0"
+      }
+    },
+    {
+      "caseId": "edge-17",
+      "category": "sensitive-safety",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model-or-model-repair",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 264,
+        "messageSha256": "ecc58aa51eeaf139e4af81654667fb08ab01158308a056179446274d7874c83d"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 106,
+        "messageSha256": "3612169815c77d070c58a23d67221b4be76f7087c4c4c9fe3ce9864ae8b8253d"
+      }
+    },
+    {
+      "caseId": "edge-18",
+      "category": "sensitive-safety",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model-or-model-repair",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 268,
+        "messageSha256": "c4d14163326fbf6f042e4824073b5836f323f66e81a3161605f32977df5117d2"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 123,
+        "messageSha256": "9e4e0bbaaa7fe88ccad4ceda10f11be7ebbc56dc1b057eff603275a53bcbcae5"
+      }
+    },
+    {
+      "caseId": "edge-19",
+      "category": "sensitive-safety",
+      "labels": {
+        "baseline": "B",
+        "pipeline": "A"
+      },
+      "terminalMethodEvidence": "model-or-model-repair",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 277,
+        "messageSha256": "a8e7074193d370bbd7e07f13710998e7d359940238c078065a72cc44f59c69ed"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 116,
+        "messageSha256": "fa59d24774604f3765c707d5e3e0012601bd9d36d324726a45ca7e88c12a345a"
+      }
+    },
+    {
+      "caseId": "edge-20",
+      "category": "sensitive-safety",
+      "labels": {
+        "baseline": "A",
+        "pipeline": "B"
+      },
+      "terminalMethodEvidence": "model-or-model-repair",
+      "baseline": {
+        "accepted": true,
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 262,
+        "messageSha256": "63af228a93bfa8c570949b0e146b9c9d670b8000d3fdd8bf68b89af4e5cc5409"
+      },
+      "pipeline": {
+        "accepted": true,
+        "traceSource": "canonical-plan-reconstruction",
+        "cueIdCoverage": 1,
+        "cueTextCoverage": 1,
+        "supportNeedPreserved": true,
+        "messageChars": 120,
+        "messageSha256": "010897c845de4c2cb82b3e505e6072d8ad210438b9fc34f95c911b692564edf9"
+      }
+    }
+  ]
+}

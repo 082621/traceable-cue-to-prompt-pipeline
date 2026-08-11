@@ -1,0 +1,4 @@
+condition,runs,accepted,acceptance_rate,mean_cue_id_coverage,mean_cue_text_coverage,mean_message_chars,p50_latency_ms,p95_latency_ms,consistent_cases,first_pass,repaired,fallback
+deterministic_v1,90,90,1.0000,1.0000,1.0000,324.8000,0.0320,0.0565,30,,,
+structured_model_no_recovery,90,80,0.8889,1.0000,0.9867,136.3444,1844.0498,3552.1672,0,,,
+validated_full_pipeline,90,90,1.0000,1.0000,1.0000,141.5556,1850.4713,4115.0143,0,80,8,2

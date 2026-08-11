@@ -1,0 +1,717 @@
+{
+  "analysisVersion": "1.0",
+  "caseCount": 20,
+  "raterCount": 2,
+  "sources": {
+    "rater1": {
+      "filename": "第一份盲评.docx",
+      "sha256": "12dd043e54512ab9c805190cafb22f762b1e436d7797373d64dca16208b7e5ba"
+    },
+    "rater2": {
+      "filename": "第二份盲评.docx",
+      "sha256": "5e0c81332a9fa624d8544cfec5ae38c3bed01bcaf95cc5de8737d37795041f86"
+    },
+    "conditionKey": {
+      "filename": "naturalness-condition-key-latest.json",
+      "sha256": "fa5b2ea13dd115389af65654026d361ee1fdb29d2cccdd9c9ed144943b080735"
+    }
+  },
+  "missingValuePolicy": "Keep missing scores as null; use available-case and paired-case denominators without imputation.",
+  "raters": [
+    {
+      "conditionScores": {
+        "baseline": {
+          "naturalness": {
+            "mean": 2,
+            "median": 2.0,
+            "n": 20
+          },
+          "coherence": {
+            "mean": 4.947,
+            "median": 5,
+            "n": 19
+          },
+          "concision": {
+            "mean": 3,
+            "median": 3,
+            "n": 19
+          }
+        },
+        "pipeline": {
+          "naturalness": {
+            "mean": 4.4,
+            "median": 5.0,
+            "n": 20
+          },
+          "coherence": {
+            "mean": 4.55,
+            "median": 5.0,
+            "n": 20
+          },
+          "concision": {
+            "mean": 4.4,
+            "median": 4.0,
+            "n": 20
+          }
+        }
+      },
+      "pairedDifferencesPipelineMinusBaseline": {
+        "naturalness": {
+          "mean": 2.4,
+          "median": 3.0,
+          "pipelineHigher": 19,
+          "tie": 1,
+          "baselineHigher": 0,
+          "n": 20
+        },
+        "coherence": {
+          "mean": -0.421,
+          "median": 0,
+          "pipelineHigher": 1,
+          "tie": 10,
+          "baselineHigher": 8,
+          "n": 19
+        },
+        "concision": {
+          "mean": 1.474,
+          "median": 1,
+          "pipelineHigher": 19,
+          "tie": 0,
+          "baselineHigher": 0,
+          "n": 19
+        }
+      },
+      "preference": {
+        "baseline": 0,
+        "pipeline": 19,
+        "no_preference": 1
+      },
+      "missingRatings": [
+        {
+          "caseId": "edge-16",
+          "message": "B",
+          "condition": "baseline",
+          "metric": "coherence"
+        },
+        {
+          "caseId": "edge-16",
+          "message": "B",
+          "condition": "baseline",
+          "metric": "concision"
+        }
+      ],
+      "perCase": {
+        "edge-01": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-02": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 5
+          }
+        },
+        "edge-03": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 5
+          }
+        },
+        "edge-04": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 3,
+            "coherence": 3,
+            "concision": 4
+          }
+        },
+        "edge-05": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-06": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 5
+          }
+        },
+        "edge-07": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 4,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 5
+          }
+        },
+        "edge-08": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 5
+          }
+        },
+        "edge-09": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 4
+          }
+        },
+        "edge-10": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 5
+          }
+        },
+        "edge-11": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 4
+          }
+        },
+        "edge-12": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-13": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-14": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-15": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-16": {
+          "preference": "no_preference",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": null,
+            "concision": null
+          },
+          "pipeline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          }
+        },
+        "edge-17": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 5,
+            "concision": 5
+          }
+        },
+        "edge-18": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-19": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 5
+          }
+        },
+        "edge-20": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 5,
+            "concision": 3
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 5
+          }
+        }
+      }
+    },
+    {
+      "conditionScores": {
+        "baseline": {
+          "naturalness": {
+            "mean": 1.95,
+            "median": 2.0,
+            "n": 20
+          },
+          "coherence": {
+            "mean": 2.95,
+            "median": 3.0,
+            "n": 20
+          },
+          "concision": {
+            "mean": 1.95,
+            "median": 2.0,
+            "n": 20
+          }
+        },
+        "pipeline": {
+          "naturalness": {
+            "mean": 4.35,
+            "median": 4.5,
+            "n": 20
+          },
+          "coherence": {
+            "mean": 4.2,
+            "median": 4.0,
+            "n": 20
+          },
+          "concision": {
+            "mean": 3.9,
+            "median": 4.0,
+            "n": 20
+          }
+        }
+      },
+      "pairedDifferencesPipelineMinusBaseline": {
+        "naturalness": {
+          "mean": 2.4,
+          "median": 2.5,
+          "pipelineHigher": 19,
+          "tie": 1,
+          "baselineHigher": 0,
+          "n": 20
+        },
+        "coherence": {
+          "mean": 1.25,
+          "median": 1.0,
+          "pipelineHigher": 19,
+          "tie": 1,
+          "baselineHigher": 0,
+          "n": 20
+        },
+        "concision": {
+          "mean": 1.95,
+          "median": 2.0,
+          "pipelineHigher": 19,
+          "tie": 1,
+          "baselineHigher": 0,
+          "n": 20
+        }
+      },
+      "preference": {
+        "baseline": 0,
+        "pipeline": 19,
+        "no_preference": 1
+      },
+      "missingRatings": [],
+      "perCase": {
+        "edge-01": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-02": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-03": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-04": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 5
+          }
+        },
+        "edge-05": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 3,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-06": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 5
+          }
+        },
+        "edge-07": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 4
+          }
+        },
+        "edge-08": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-09": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-10": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 1
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 4,
+            "concision": 3
+          }
+        },
+        "edge-11": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 4,
+            "coherence": 5,
+            "concision": 4
+          }
+        },
+        "edge-12": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-13": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-14": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-15": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 1,
+            "coherence": 2,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 4,
+            "concision": 3
+          }
+        },
+        "edge-16": {
+          "preference": "no_preference",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          }
+        },
+        "edge-17": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 4
+          }
+        },
+        "edge-18": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 4,
+            "concision": 4
+          }
+        },
+        "edge-19": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 4
+          }
+        },
+        "edge-20": {
+          "preference": "pipeline",
+          "baseline": {
+            "naturalness": 2,
+            "coherence": 3,
+            "concision": 2
+          },
+          "pipeline": {
+            "naturalness": 5,
+            "coherence": 5,
+            "concision": 4
+          }
+        }
+      }
+    }
+  ],
+  "preferenceAgreement": {
+    "sameDecisionCases": 20,
+    "totalCases": 20,
+    "bothPipeline": 19,
+    "bothNoPreference": 1
+  },
+  "claimBoundary": {
+    "supported": [
+      "Naturalness advantage within the 20 synthetic cases",
+      "Concision advantage within the 20 synthetic cases",
+      "First-message preference within the 20 synthetic cases"
+    ],
+    "notSupported": [
+      "Unanimous coherence advantage",
+      "Clinical effectiveness or safety",
+      "Population-level or cross-model generalisation"
+    ]
+  }
+}

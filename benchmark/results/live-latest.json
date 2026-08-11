@@ -1,0 +1,133 @@
+{
+  "summary": {
+    "generatedAt": "2026-08-05T02:23:39.522Z",
+    "mode": "live-openai",
+    "model": "gpt-5.4-mini",
+    "modelSettings": {
+      "responseFormat": "zod-structured-output",
+      "maxOutputTokens": 1800,
+      "reasoningEffort": "provider-default"
+    },
+    "schemaVersion": "2.0",
+    "nodeVersion": "v24.14.0",
+    "openaiSdkVersion": "7.4.0",
+    "syntheticDataOnly": true,
+    "generatedTextPersisted": false,
+    "caseCount": 8,
+    "acceptedCount": 8,
+    "firstPassCount": 8,
+    "repairedCount": 0,
+    "fallbackCount": 0,
+    "meanCueTextCoverage": 1,
+    "latencyMs": {
+      "p50": 1715.66,
+      "p95": 5094.85
+    }
+  },
+  "rows": [
+    {
+      "caseId": "B01",
+      "mode": "gpt-5.4-mini",
+      "baselineCueTextCoverage": 1,
+      "resultCueIdCoverage": 1,
+      "resultCueTextCoverage": 1,
+      "accepted": true,
+      "method": "model",
+      "fallbackReason": "none",
+      "attempts": 1,
+      "usedFallback": false,
+      "wallClockMs": 5094.85
+    },
+    {
+      "caseId": "B02",
+      "mode": "gpt-5.4-mini",
+      "baselineCueTextCoverage": 1,
+      "resultCueIdCoverage": 1,
+      "resultCueTextCoverage": 1,
+      "accepted": true,
+      "method": "model",
+      "fallbackReason": "none",
+      "attempts": 1,
+      "usedFallback": false,
+      "wallClockMs": 1963.6
+    },
+    {
+      "caseId": "B03",
+      "mode": "gpt-5.4-mini",
+      "baselineCueTextCoverage": 1,
+      "resultCueIdCoverage": 1,
+      "resultCueTextCoverage": 1,
+      "accepted": true,
+      "method": "model",
+      "fallbackReason": "none",
+      "attempts": 1,
+      "usedFallback": false,
+      "wallClockMs": 2467.34
+    },
+    {
+      "caseId": "B04",
+      "mode": "gpt-5.4-mini",
+      "baselineCueTextCoverage": 1,
+      "resultCueIdCoverage": 1,
+      "resultCueTextCoverage": 1,
+      "accepted": true,
+      "method": "model",
+      "fallbackReason": "none",
+      "attempts": 1,
+      "usedFallback": false,
+      "wallClockMs": 1747.46
+    },
+    {
+      "caseId": "B05",
+      "mode": "gpt-5.4-mini",
+      "baselineCueTextCoverage": 1,
+      "resultCueIdCoverage": 1,
+      "resultCueTextCoverage": 1,
+      "accepted": true,
+      "method": "model",
+      "fallbackReason": "none",
+      "attempts": 1,
+      "usedFallback": false,
+      "wallClockMs": 1676.1
+    },
+    {
+      "caseId": "B06",
+      "mode": "gpt-5.4-mini",
+      "baselineCueTextCoverage": 1,
+      "resultCueIdCoverage": 1,
+      "resultCueTextCoverage": 1,
+      "accepted": true,
+      "method": "model",
+      "fallbackReason": "none",
+      "attempts": 1,
+      "usedFallback": false,
+      "wallClockMs": 1715.66
+    },
+    {
+      "caseId": "B07",
+      "mode": "gpt-5.4-mini",
+      "baselineCueTextCoverage": 1,
+      "resultCueIdCoverage": 1,
+      "resultCueTextCoverage": 1,
+      "accepted": true,
+      "method": "model",
+      "fallbackReason": "none",
+      "attempts": 1,
+      "usedFallback": false,
+      "wallClockMs": 1640.03
+    },
+    {
+      "caseId": "B08",
+      "mode": "gpt-5.4-mini",
+      "baselineCueTextCoverage": 1,
+      "resultCueIdCoverage": 1,
+      "resultCueTextCoverage": 1,
+      "accepted": true,
+      "method": "model",
+      "fallbackReason": "none",
+      "attempts": 1,
+      "usedFallback": false,
+      "wallClockMs": 1664.06
+    }
+  ]
+}

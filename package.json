@@ -16,6 +16,12 @@
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "benchmark": "node benchmark/runBenchmark.js",
+    "benchmark:live": "node benchmark/runBenchmark.js --live",
+    "benchmark:ablation": "node benchmark/runAblation.js",
+    "benchmark:ablation:smoke": "node benchmark/runAblation.js --repeats 1 --limit 3",
+    "benchmark:edge": "node benchmark/runEdgeBenchmark.js",
+    "benchmark:edge:reconstruct": "node benchmark/reconstructEdgeEvidence.js",
+    "benchmark:figure": "node benchmark/renderResultsFigure.js",
     "preview": "vite preview"
   },
   "dependencies": {
