@@ -42,9 +42,9 @@ The dissertation snapshot recorded 93.64% statements, 70.96% branches, 95.06% fu
 
 The expanded offline fault-injection run cycled through clean, missing-text, missing-ID, unknown-ID, provider-error, and persistent-invalid modes. It produced 5 first-pass results, 15 repaired results, and 10 deterministic fallbacks; every returned output reached exact cue-ID/text coverage of 1.0.
 
-In the provenance-labelled reconstruction of the 20-case edge record, baseline and accepted pipeline outputs both reached 20/20 cue-ID coverage, exact cue-text coverage, and support-need preservation. Mean message length was 264.35 characters for the deterministic baseline and 114.45 for the accepted pipeline. The aggregate report records 22 provider calls and latency of 1,788.69 ms p50, 4,296.54 ms p95, and 2,284.58 ms mean. The preserved blind materials identify `edge-16` in the contradictory category as the single fallback; the aggregate report places one repair in the sensitive/safety category but does not identify the individual case.
+In the message-level provenance reconstruction of the 20-case edge record, baseline and accepted pipeline outputs both reached 20/20 cue-ID coverage, exact cue-text coverage, and support-need preservation. Reconstructed trace IDs come from the canonical recovered plan and are revalidated against the preserved messages; they are not original per-sentence telemetry. Mean message length was 264.35 characters for the deterministic baseline and 114.45 for the accepted pipeline. The aggregate report records 22 provider calls and latency of 1,788.69 ms p50, 4,296.54 ms p95, and 2,284.58 ms mean. The preserved blind materials identify `edge-16` in the contradictory category as the single fallback; the aggregate report places one repair in the sensitive/safety category but does not identify the individual case.
 
-Both blinded raters preferred the pipeline output in 19/20 cases and selected no preference for `edge-16`, where fallback made the pair identical. For each rater, the pipeline's mean naturalness advantage was +2.40 points. Concision also favoured the pipeline, while coherence is reported separately by rater because the two raters applied that construct differently.
+Both blinded raters preferred the pipeline output in 19/20 cases and selected no preference for `edge-16`, where fallback made the pair identical. For each rater, the pipeline's mean naturalness advantage was +2.40 points. Concision also favoured the pipeline, while coherence is reported separately by rater because the two raters applied that construct differently. One rater omitted the baseline coherence and concision scores for the identical fallback pair; the corresponding means use available-case denominators (`n=19`) without imputation.
 
 ## Claim boundary
 
@@ -62,3 +62,5 @@ Machine-readable evidence is stored in:
 - `benchmark/results/naturalness-summary.csv` — per-rater descriptive table.
 
 Dissertation figures are stored in `docs/figures/`, including the ablation, edge-method, and blind-rating summaries.
+
+The terminology and evidence boundary used in dissertation v2.3.0 are mapped to the repository in [`DISSERTATION-ALIGNMENT.md`](DISSERTATION-ALIGNMENT.md).

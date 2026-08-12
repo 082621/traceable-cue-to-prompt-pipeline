@@ -2,7 +2,7 @@
 
 ## Research questions
 
-- **TRQ1 — Traceability:** Can every output phrase required by a selected cue be traced to a stable input ID?
+- **TRQ1 — Traceability:** Can an accepted message be linked to its required cue, support, and response-style IDs and checked against the corresponding source strings?
 - **TRQ2 — Robustness:** Does bounded validation, repair, and fallback preserve all required information under omission, fabrication, parser, and provider faults?
 - **TRQ3 — Performance:** What first-pass, repair, fallback, and p50/p95 latency trade-offs arise under a fixed model version?
 - **TRQ4 — Reproducibility:** Do identical inputs produce byte-identical baseline/fallback outputs and stable plan digests?
@@ -56,6 +56,6 @@ It compares coverage, constraint failures, repair/fallback rate, latency, length
 
 The expanded offline suite accepted all 30 fault-injection cases after controlled recovery. In the main 90-run live ablation, model-only Structured Outputs passed 80/90 runs with mean exact cue-text coverage of 98.67%. The full pipeline accepted 90/90 with 100% coverage: 80 first-pass, 8 repaired, and 2 deterministic fallback results. Model-only/full p50 latency was 1,844.05/1,850.47 ms and p95 was 3,552.17/4,115.01 ms. See `docs/RESULTS.md` and `benchmark/results/ablation-live-latest.json`.
 
-The provenance-labelled reconstruction of the 20-case edge record contains 20/20 accepted final outputs with complete cue and support preservation: 18 first-pass model outputs, one repaired output, and one deterministic fallback. The original per-case machine telemetry was unavailable; preserved synthetic messages were revalidated, while aggregate method and latency values were transcribed from the submitted report. Each blinded rater preferred the pipeline in 19/20 pairs and selected no preference for the identical fallback pair. The pipeline's mean naturalness advantage was +2.40 for each rater; coherence remains separated by rater.
+The message-level provenance reconstruction of the 20-case edge record contains 20/20 accepted final outputs with complete cue and support preservation: 18 first-pass model outputs, one repaired output, and one deterministic fallback. The reconstruction links each accepted message to the canonical recovered plan and rechecks its required IDs and strings; it is not original per-sentence trace telemetry. The original per-case machine telemetry was unavailable, so aggregate method and latency values were transcribed from the submitted report. Each blinded rater preferred the pipeline in 19/20 pairs and selected no preference for the identical fallback pair. The pipeline's mean naturalness advantage was +2.40 for each rater; coherence remains separated by rater.
 
 This supports the limited claim that independent validation and bounded recovery removed the invalid returns observed under Structured Outputs alone for these synthetic runs. It does not establish performance on participant-authored data, a population failure probability, comparative fluency, or clinical benefit. A final dissertation should retain those boundaries and, if access permits, repeat the experiment with a pinned model snapshot.
