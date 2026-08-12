@@ -16,7 +16,7 @@ This is a research prototype, not a clinical or crisis-support system.
 - A versioned Zod input contract rejects malformed or catalogue-tampered selections before an API call.
 - A planner converts selections and participant-authored text into stable cue IDs and an immutable prompt plan.
 - The server uses the OpenAI Responses API with Structured Outputs; the API key never enters the browser bundle.
-- The model must return its cue/support/style trace alongside the draft.
+- The model must return cue/support/style IDs alongside the draft. These IDs provide message-level provenance for the accepted result; they are not a sentence-level attribution map and do not expose hidden model reasoning.
 - An independent validator checks exact ID coverage, exact source-text preservation, support/style constraints, optional-text preservation, and limited fabrication flags.
 - One bounded repair attempt receives the validation report. Persistent invalid output or provider failure activates a separately validated deterministic fallback.
 - Logs contain request IDs, method, fallback class, and latency—not emotional-support text.
@@ -86,9 +86,11 @@ traceable-cue-to-prompt-pipeline/
 `POST /api/v1/prompts/generate` accepts three selected concerns, their situation/emotion/impact cues, one or two support needs, one response style, and optional text. The response contains:
 
 - `message`: the accepted model draft or deterministic fallback;
-- `trace`: cue, support, and style IDs claimed by the generator;
+- `trace`: cue, support, and style IDs claimed for the accepted message; this is message-level provenance rather than sentence-level attribution;
 - `validation`: exact coverage and invariant results;
 - `metadata`: request ID, plan digest, generation method, attempt count, fallback reason, model, and latency.
+
+The public validation object uses `styleMatched` and reports absent support text through a `support-text-missing` entry in `safetyFlags`. `supportTextPreserved` is an internal acceptance check, not a public response field. The response envelope does not expose the plan's internal `schemaVersion`.
 
 `GET /api/health` reports configuration state and model name, but never returns credentials.
 
@@ -101,5 +103,7 @@ For thesis claims, distinguish clearly between: (1) the original N=23 interface 
 ## Academic context
 
 This repository accompanies *Design and Evaluation of a Fault-Tolerant and Traceable Cue-to-Prompt Generation Pipeline* (University of Leeds, COMP3931, 2025/26). The earlier N=23 interface study used the deterministic browser prototype; it did not expose participants to the revised live LLM pipeline.
+
+The final dissertation v2.3.0 describes the evaluated repository release v2.0.0. See [`docs/DISSERTATION-ALIGNMENT.md`](docs/DISSERTATION-ALIGNMENT.md) for the exact paper-to-code terminology, response-field, evidence, and command mapping.
 
 This clean reproducibility repository was assembled on 12 August 2026 from the original prototype and the evaluated v2 artefact. Its commits group implementation components into auditable stages; they do not claim to reproduce the original chronological development history.
